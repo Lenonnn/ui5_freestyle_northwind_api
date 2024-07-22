@@ -1,0 +1,104 @@
+<mvc:View controllerName="test.env.lenon.appproductsnorthwind.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" 
+	xmlns="sap.m" 
+	xmlns:core="sap.ui.core"
+	xmlns:ui="sap.ui.table"
+	xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	displayBlock="true">
+
+	<NavContainer id="navContainer">
+		<pages>
+			<Page id="contentPage" title="Northwind Free API - Products" titleLevel="H1">
+				<content>
+					<VBox width="100%">
+						<smartFilterBar:SmartFilterBar
+							id="smartFilterBar" 
+							persistencyKey="UniqueAndStablePersistencyKey"
+							entitySet="Products"
+						>
+							<smartFilterBar:controlConfiguration>
+
+								<smartFilterBar:ControlConfiguration
+									key="ProductID"
+									visibleInAdvancedArea="true"
+									preventInitialDataFetchInValueHelpDialog="false"
+								/>
+								<smartFilterBar:ControlConfiguration
+									key="SupplierID"
+									visibleInAdvancedArea="true"
+									preventInitialDataFetchInValueHelpDialog="false"
+								/>
+						
+							</smartFilterBar:controlConfiguration>
+						</smartFilterBar:SmartFilterBar>
+					</VBox>
+					
+					<Panel id="panelTable">
+						<content>
+							<smartTable:SmartTable
+								id="SmartTableSProducts"
+								entitySet="Products"
+								smartFilterId="smartFilterBar"
+								tableType="ResponsiveTable"
+								useExportToExcel="true"
+								beforeExport="onBeforeExport"
+								useVariantManagement="true"
+								useTablePersonalisation="true"
+								header="Products"
+								showRowCount="true"
+								enableAutoBinding="true"
+								class="sapUiResponsiveContentPadding bold"
+								demandPopin="true"
+								fitContainer="true"
+								initiallyVisibleFields="ProductID,ProductName,SupplierID,CategoryID,QuantityPerUnit,UnitPrice,UnitsInStock,UnitsOnOrder,ReorderLevel,Discontinued"
+							>
+								<Table 
+									mode="None" 
+									growing="true"
+								>
+
+									<columns>
+                                    	<Column id="UnitPrice" hAlign="End" width="12rem">
+											<customData>
+												<core:CustomData 
+													key="p13nData"
+													value='\{"columnKey": "UnitPrice", "columnIndex":"5", "leadingProperty": "UnitPrice", "sortProperty": "UnitPrice", "displayBehaviour": "descriptionOnly", "width": "360px"}'
+												/>
+											</customData>
+											<Label text="Unit Price US$" />
+										</Column>
+
+									</columns>
+									<items>
+										<!-- <ColumnListItem 
+											type="Navigation"
+											press="onPressGenerete"
+										> -->
+										<ColumnListItem 
+											type="Navigation"
+											press="onPressContinue"
+										>
+											<cells>
+												<Text 
+													text="{
+														path: 'UnitPrice',
+														formatter: '._formateValue'
+													}"
+												/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+
+								<smartTable:layoutData>
+									<FlexItemData growFactor="1" baseSize="0%"/>
+								</smartTable:layoutData>
+							</smartTable:SmartTable>
+						</content>
+					</Panel>
+				</content>
+			</Page>
+		</pages>
+	</NavContainer>
+</mvc:View>

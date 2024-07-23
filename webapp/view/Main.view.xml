@@ -12,6 +12,7 @@
 			<Page id="contentPage" title="Northwind Free API - Products" titleLevel="H1">
 				<content>
 					<VBox width="100%">
+
 						<smartFilterBar:SmartFilterBar
 							id="smartFilterBar" 
 							persistencyKey="UniqueAndStablePersistencyKey"
@@ -53,10 +54,18 @@
 								fitContainer="true"
 								initiallyVisibleFields="ProductID,ProductName,SupplierID,CategoryID,QuantityPerUnit,UnitPrice,UnitsInStock,UnitsOnOrder,ReorderLevel,Discontinued"
 							>
-								<Table 
-									mode="None" 
-									growing="true"
-								>
+
+								<smartTable:customToolbar>
+									<OverflowToolbar>
+										<ToolbarSeparator />
+											<ToolbarSpacer />
+												<ToggleButton id="btnPrintCts" icon="sap-icon://print"  text="Test Flow Logic" enabled="true" pressed="false" press=".onGetDate" />
+										<ToolbarSeparator />
+									</OverflowToolbar>
+								</smartTable:customToolbar>
+
+								<Table mode="None" 
+									   growing="true" >
 
 									<columns>
                                     	<Column id="UnitPrice" hAlign="End" width="12rem">
